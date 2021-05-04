@@ -52,8 +52,17 @@
     <section class="hero section">
       <div class="container">
         <h1 class="hero-title">эффективные решения <br> для вашего бизнеса</h1>
-        <button class="order-button button" type="button">Заказать услугу</button>
-      </div>
+        <button data-modal-open class="order-button button" type="button">Заказать услугу</button>
+        <div data-modal class="backdrop is-hidden">
+          <div class="modal">
+            <p>текст модального окна</p>
+            <button class="close-button" data-modal-close aria-label="закрыть">
+              <svg class="close-button-icon">
+                <use href="../img/close-back.svg" width="11px" height="11px"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
     </section>
 
     <!--============FEATURES===============-->
@@ -118,12 +127,30 @@
       <div class="container">
         <h2 class="section-title">Чем мы занимаемся</h2>
         <ul class="about-list list">
-          <li class="about-list-item"><a class="about-list-link" href=""><img src="./img/box1.jpg" alt="computer"
-                width="370"></a></li>
-          <li class="about-list-item"><a class="about-list-link" href=""><img src="./img/box2.jpg" alt="smartphone"
-                width="370"></a></li>
-          <li class="about-list-item"><a class="about-list-link" href=""><img src="./img/box3.jpg" alt="tablet"
-                width="370"></a></li>
+          <li class="about-list-item">
+            <a class="about-list-link link" href="">
+              <img src="./img/box1.jpg" alt="computer" width="370">
+              <div class="card-text-box">
+                <p class="card-text">десктопные приложения</p>
+              </div>
+            </a>
+          </li>
+          <li class="about-list-item">
+            <a class="about-list-link link" href="">
+              <img src="./img/box2.jpg" alt="smartphone" width="370">
+              <div class="card-text-box">
+                <p class="card-text">мобильные приложения</p>
+              </div>
+            </a>
+          </li>
+          <li class="about-list-item">
+            <a class="about-list-link link" href="">
+              <img src="./img/box3.jpg" alt="tablet" width="370">
+              <div class="card-text-box">
+                <p class="card-text">дизайнерские решения</p>
+              </div>
+            </a>
+          </li>
         </ul>
       </div>
     </section>
@@ -330,6 +357,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="./js/modal.js"></script>
 </body>
 
 </html>

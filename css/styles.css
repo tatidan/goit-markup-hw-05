@@ -47,6 +47,7 @@ body {
   color: var(--primary-text-color);
   font-family: var(--primary-font-family);
   font-style: var(--primary-font-style);
+  /* padding-top: высота шапки 82,4px*/
 }
 
 /* ==========COMPONENTS============ */
@@ -114,6 +115,10 @@ body {
 /* =========HEADER=========== */
 
 .header {
+  /* position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0; */
   background-color: var(--white-color);
   margin: 0;
   border-bottom: 1px solid #ececec;
@@ -157,6 +162,23 @@ body {
 }
 .site-nav-list-link.current:active {
   color: var(--accent-color);
+}
+.current {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* опустить ниже */
+}
+
+.current::after {
+  content: "";
+  display: inline-block;
+  width: 78px;
+  /* не ОК для студии, задать переменной по длине слова */
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--accent-color);
+  margin-top: 28px;
 }
 /* ======end of HEADER-NAVIGATION======= */
 
@@ -243,6 +265,64 @@ body {
   margin-bottom: 30px;
   text-align: center;
 }
+.backdrop {
+  cursor: not-allowed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 1;
+}
+.backdrop.is-hidden {
+  /* visibility: ; */
+  opacity: 0;
+  pointer-events: none;
+}
+.modal {
+  /* padding: 2rem 1rem; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  width: 528px;
+  height: 581px;
+  border-radius: 4px;
+  background-color: var(--white-color);
+  cursor: pointer;
+  margin: auto;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  display: block;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+.close-button-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: black;
+}
+/* .close-button-icon {
+/* добавить svg close на экран*/
 
 /* =============FEATURES==================== */
 
@@ -315,12 +395,36 @@ body {
   margin-left: -30px;
 }
 .about-list-item {
+  position: relative;
   flex-basis: calc((100% - 3 * 30px) / 3);
   margin-top: 30px;
   margin-left: 30px;
 }
 .feature-section {
   padding-bottom: 0;
+}
+.card-text-box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70px;
+  z-index: 2;
+  background-color: rgba(47, 48, 58, 0.8);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.card-text {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--white-color);
 }
 /* =============end of ABOUT==================== */
 /* =============OUR TEAM==================== */
@@ -549,6 +653,7 @@ body {
 }
 
 /*========PORTFOLIO-BUTTONS==========  */
+
 .radiobuttons-list {
   display: flex;
   justify-content: center;
@@ -616,6 +721,29 @@ body {
   color: var(--secondary-text-color);
   letter-spacing: 0.03em;
   margin-bottom: 4px;
+}
+
+/* .portfolio-project-overlay::before {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-color);
+  opacity: 0.5;
+  z-index: 1;
+  padding: 24px 63px;
+} */
+.overlay-text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: var(--white-color);
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  border: 1px solid red;
 }
 
 /* ===========END of PORTFOLIO page============== */
