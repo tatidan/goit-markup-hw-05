@@ -9,10 +9,6 @@
   --basic-icon-color: #afb1b8;
 }
 
-/* Roboto 400, 500, 700, 900, Raleway 700
-font-family: "Raleway", sans-serif;
-font-family: "Roboto", sans-serif;*/
-
 /* main css */
 h1,
 h2,
@@ -40,6 +36,7 @@ img {
 
 .link {
   text-decoration: none;
+  cursor: pointer;
 }
 
 body {
@@ -67,6 +64,7 @@ body {
   line-height: 1.88;
   letter-spacing: 0.06em;
   margin: 0 auto;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button:hover,
 .button:focus {
@@ -149,6 +147,7 @@ body {
   font-size: 14px;
   line-height: 1.1;
   letter-spacing: 0.02em;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .site-nav-list-item:not(:last-child) {
   margin-right: 50px;
@@ -163,22 +162,21 @@ body {
 .site-nav-list-link.current:active {
   color: var(--accent-color);
 }
-.current {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* опустить ниже */
+.site-nav-list-item {
+  position: relative;
 }
-
+.site-nav-list-link .current {
+  display: inline-block;
+}
 .current::after {
   content: "";
-  display: inline-block;
-  width: 78px;
-  /* не ОК для студии, задать переменной по длине слова */
+  display: block;
+  width: 100%;
   height: 4px;
   border-radius: 2px;
   background-color: var(--accent-color);
-  margin-top: 28px;
+  position: absolute;
+  bottom: 0;
 }
 /* ======end of HEADER-NAVIGATION======= */
 
@@ -191,6 +189,8 @@ body {
   font-size: 14px;
   line-height: 1.1;
   letter-spacing: 0.02em;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contacts-nav-link:hover,
 .contacts-nav-link:focus {
@@ -273,15 +273,12 @@ body {
   background-color: rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
   position: fixed;
-  left: 0;
-  right: 0;
   top: 0;
-  bottom: 0;
-  margin: auto;
+  left: 0;
   z-index: 1;
 }
-.backdrop.is-hidden {
-  /* visibility: ; */
+.is-hidden {
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
 }
@@ -302,27 +299,28 @@ body {
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
+/* добавить scale + opacity при появлении modal */
 .close-button {
   position: absolute;
   top: 8px;
   right: 8px;
-  cursor: pointer;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* почему не центрируется??? */
   width: 30px;
   height: 30px;
+  cursor: pointer;
   box-sizing: border-box;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
 }
 .close-button-icon {
-  display: block;
   width: 18px;
   height: 18px;
-  fill: black;
+  fill: rgba(0, 0, 0, 1);
 }
-/* .close-button-icon {
-/* добавить svg close на экран*/
 
 /* =============FEATURES==================== */
 
@@ -367,10 +365,6 @@ body {
 .feature-section .feature-description {
   margin: 0;
 }
-.feature-list-item {
-  display: flex;
-  flex-direction: column;
-}
 .feature-item-logo {
   display: block;
   width: 70px;
@@ -378,13 +372,13 @@ body {
 }
 .feature-card-wrapper-top {
   display: flex;
-  width: 270px;
+  width: 100%;
   height: 120px;
   background-color: var(--secondary-bg-color);
   margin-bottom: 30px;
   align-items: center;
   justify-content: center;
-  padding: 25px 100px;
+  border-radius: 4px;
 }
 /* =============end of FEATURES==================== */
 /* =============ABOUT==================== */
@@ -477,6 +471,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-links-list-item:not(:last-child) {
   margin-right: 10px;
@@ -498,80 +496,46 @@ body {
 }
 
 .social-links-list {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-flex;
 }
 .our-team-list-item {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 /* =============end of OUR TEAM==================== */
 /* =============OUR CLIENTS==================== */
-.icon-logo {
-  fill: var(--basic-icon-color);
+.our-clients-list {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  margin-left: -30px;
+  margin-top: -30px;
+}
+.our-clients-list-item {
+  border: 1px solid var(--basic-icon-color);
+  border-radius: 4px;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+.icon-logo {
+  width: 170px;
+  height: 90px;
+  fill: var(--basic-icon-color);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .icon-logo:hover,
 .icon-logo:focus {
   fill: var(--accent-color);
 }
+.our-clients-list-item {
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 .our-clients-list-item:hover,
 .our-clients-list-item:focus {
   border-color: var(--accent-color);
 }
-.icon-logo-1 {
-  display: block;
-  width: 45px;
-  height: 50px;
-}
-.icon-logo-2 {
-  display: block;
-  width: 40px;
-  height: 52px;
-}
-.icon-logo-3 {
-  display: block;
-  width: 42px;
-  height: 43px;
-}
-.icon-logo-4 {
-  display: block;
-  width: 80px;
-  height: 43px;
-}
-/* 4-му лого не применяется его правильный размер, он слишком мал */
-.icon-logo-5 {
-  display: block;
-  width: 59px;
-  height: 47px;
-}
-.icon-logo-6 {
-  display: block;
-  width: 89px;
-  height: 46px;
-}
 
-.our-clients-list {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: -30px;
-  margin-left: -30px;
-}
-.our-clients-list-item {
-  flex-basis: calc((100% - 6 * 30px) / 6);
-  border: 1px solid var(--basic-icon-color);
-  border-radius: 4px;
-  min-height: 90px;
-  margin-top: 30px;
-  margin-left: 30px;
-  box-sizing: border-box;
-}
+/* как отцентрировать иконки внутри бокса??? */
+/* как сбросить лишние пиксели справа, которые есть сумма границ боксов? */
 
 /* =============end of OUR CLIENTS==================== */
 
@@ -590,6 +554,7 @@ body {
   line-height: 1.7;
   letter-spacing: 0.03em;
   margin-bottom: 8px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-links-item:not(:last-child) {
   margin-bottom: 8px;
@@ -601,6 +566,7 @@ body {
   font-size: 14px;
   line-height: 1.1;
   letter-spacing: 0.02em;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-address:hover,
 .footer-address:focus,
@@ -648,20 +614,17 @@ body {
   background-color: var(--white-color);
   margin: 0;
 }
-.portfolio-title {
-  display: none;
-}
 
 /*========PORTFOLIO-BUTTONS==========  */
 
 .radiobuttons-list {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 .radiobuttons-list-item {
   display: inline-block;
   padding: 0;
-  margin-bottom: 50px;
 }
 .radiobuttons-list-item:not(:last-child) {
   margin-right: 8px;
@@ -677,6 +640,8 @@ body {
   border-radius: 4px;
   min-height: 38px;
   padding: 6px 22px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .portfolio-button:hover,
 .portfolio-button:focus {
@@ -693,9 +658,11 @@ body {
   margin-right: -30px;
 }
 .portfolio-projects-list-item {
+  width: 370px;
   margin-left: 30px;
   margin-top: 30px;
   border-bottom: 1px solid #eeeeee;
+  transition: filter 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-projects-list-item:hover,
@@ -723,27 +690,59 @@ body {
   margin-bottom: 4px;
 }
 
-/* .portfolio-project-overlay::before {
-  display: inline-block;
+.portfolio-project-card-link {
+  position: relative;
+}
+.overlay {
+  display: block;
   position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: var(--accent-color);
-  opacity: 0.5;
+  bottom: -2 * 294px;
+  left: 0;
+  width: 370px;
+  height: 294px;
+  background-color: rgba(33, 150, 243, 0.9);
   z-index: 1;
-  padding: 24px 63px;
+  opacity: 0;
+  transition: opacity 1250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 1250ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* animation-name: slide-up;
+  animation-duration: 1000ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-iteration-count: 1; */
+}
+
+/* @keyframes slide-up {
+  0% {
+    .overlay {bottom: -2 * 294px;  left: 0;}
+  }
+  50% {}
+  100% {}
 } */
+.portfolio-project-card-text {
+  background-color: #fff;
+  z-index: 3;
+}
 .overlay-text {
+  display: block;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.56;
   letter-spacing: 0.03em;
   color: var(--white-color);
-  /* position: absolute;
+  position: absolute;
   top: 0;
-  left: 0; */
-  border: 1px solid red;
+  left: 0;
+  width: 370px;
+  height: 294px;
+  text-align: start;
+  padding: 63px 24px;
+}
+.portfolio-projects-list-item:hover .overlay {
+  opacity: 1;
+  transform: translateY(-294px);
+}
+.portfolio-projects-list-item:focus .overlay {
+  opacity: 1;
 }
 
 /* ===========END of PORTFOLIO page============== */
