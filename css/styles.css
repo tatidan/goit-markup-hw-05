@@ -533,15 +533,15 @@ body {
   fill: var(--basic-icon-color);
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.icon-logo:hover,
-.icon-logo:focus {
+.our-clients-list-item:hover .icon-logo,
+.our-clients-list-item:focus-within .icon-logo {
   fill: var(--accent-color);
 }
 .our-clients-list-item {
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .our-clients-list-item:hover,
-.our-clients-list-item:focus {
+.our-clients-list-item:focus-within {
   border-color: var(--accent-color);
 }
 
