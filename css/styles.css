@@ -313,7 +313,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* почему не центрируется??? */
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -492,20 +491,22 @@ body {
   fill: var(--basic-icon-color);
 }
 .social-links-list-item:hover,
-.social-links-list-item:focus {
+.social-links-list-item:focus-within {
   background-color: var(--accent-color);
   border: 1px solid transparent;
 }
 .social-links-list-item:hover .social-links-icon,
-.social-links-list-item:focus .social-links-icon {
+.social-links-list-item:focus-within .social-links-icon {
   fill: var(--white-color);
 }
 
 .social-links-list {
   display: inline-flex;
 }
-.our-team-list-item {
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+.member-card-text {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 0px 4px 4px;
 }
 /* =============end of OUR TEAM==================== */
 /* =============OUR CLIENTS==================== */
@@ -517,14 +518,18 @@ body {
   margin-top: -30px;
 }
 .our-clients-list-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 170px;
+  height: 90px;
   border: 1px solid var(--basic-icon-color);
   border-radius: 4px;
   margin-left: 30px;
   margin-top: 30px;
 }
 .icon-logo {
-  width: 170px;
-  height: 90px;
   fill: var(--basic-icon-color);
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -653,6 +658,8 @@ body {
 .portfolio-button:focus {
   color: var(--white-color);
   background-color: var(--accent-color);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 /*========end of PORTFOLIO-BUTTONS==========  */
 /*========PORTFOLIO-PROJECTS==========  */
@@ -730,12 +737,10 @@ body {
   text-align: start;
   padding: 63px 24px;
 }
-.portfolio-projects-list-item:hover .overlay {
+.portfolio-projects-list-item:hover .overlay,
+.portfolio-projects-list-item:focus-within .overlay {
   opacity: 1;
   transform: translateY(-100%);
-}
-.portfolio-projects-list-item:focus .overlay {
-  opacity: 1;
 }
 
 /* ===========END of PORTFOLIO page============== */
